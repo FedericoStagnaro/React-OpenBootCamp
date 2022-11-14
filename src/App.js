@@ -1,8 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import TaskList from './components/containers/task.list';
-// import Greeting from './components/pure/greeting'
-// import GreetingF from './components/pure/greetingFunction'
+import ContactList from './components/containers/contact.list';
 
 function App() {
   return (
@@ -10,10 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         
-        {/** Componente greeting */}
-        {/**<Greeting name='Federico'></Greeting> <GreetingF name='Federico'></GreetingF>*/}
-
-        <TaskList></TaskList>
+        <ContactList></ContactList>
 
       </header> 
     </div>
