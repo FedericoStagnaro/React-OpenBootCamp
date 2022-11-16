@@ -6,13 +6,14 @@ import './App.css';
 // import GreetingF from './components/pure/greetingFunction'
 
 
-import {TaskListClass, TaskListFunction} from './components/containers/task.list';
-import { GreetingStyled } from './components/pure/greeting.function.styled';
+// import {TaskListClass, TaskListFunction} from './components/containers/task.list';
+// import { GreetingStyled } from './components/pure/greeting.function.styled';
 // import Ejemplo1 from './hooks/ejemplo1.useState';
 // import Ejemplo2 from './hooks/ejemplo2.useEffect';
 // import Ejemplo3 from './hooks/ejemplo3.useContext';
 // import Ejemplo4 from './hooks/ejemplo4.propsChildren';
 // import LifeCycleExample from './components/pure/lifeCycleExample';
+import {Clock} from './components/pure/clock.jsx'
 
 function App() {
   return (
@@ -35,8 +36,8 @@ function App() {
         {/* <TaskListClass></TaskListClass> */}
         {/* <TaskListFunction></TaskListFunction> */}
 
-        <GreetingStyled name={'Federico'}></GreetingStyled>
-
+        {/* <GreetingStyled name={'Federico'}></GreetingStyled> */}
+        <Clock></Clock>
       </header> 
     </div>
   );
