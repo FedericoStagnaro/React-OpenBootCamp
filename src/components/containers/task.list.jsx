@@ -1,26 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LEVELS from "../../models/levels.enum";
 import Task from "../../models/task.class";
-import TaskComponent from "../pure/task";
+import { TaskComponentClass, TaskComponentFunction } from "../pure/task";
 
-class TaskList extends React.Component {
+export class TaskListClass extends React.Component {
     defaultTask = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, false)
 
-    // constructor(props) {
-    //     super(props)
-    // }
+    constructor(props) {
+        super(props)
+        this.tasks = [this.defaultTask]
+    }
+
+    componentDidMount() {
+        console.log('TASKLIST-COMPONENT-CLASS: has been created')
+    }
+
+    componentDidUpdate () {
+        console.log('TASKLIST-COMPONENT-CLASS: has been updated')
+    }
+
+    componentWillUnmount() {
+        console.log('TASKLIST-COMPONENT-CLASS: is going to unmount...')
+    }
 
     render() {
         return (
             <div>
-                <h1>Tus Tareas:</h1>
+                <h1>Tus Tareas: (CLASS)</h1>
                 <div>
-                    {/** Aplicar for/map para muchas Tareas */}
-                    <TaskComponent task={this.defaultTask}></TaskComponent>
+
+                    <h2> 1 - Task Class </h2>
+                    <ul>
+                        {this.tasks.map(t => <TaskComponentClass task={t}> </TaskComponentClass>)}
+                    </ul>
+
+                    <h2> 2 - Task Function </h2>
+                    <ul>
+                        {this.tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)}
+                    </ul>
+
                 </div>
             </div>
         )
     }
 }
 
-export default TaskList
+export const TaskListFunction = (props) => {
+    const defaultTask = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, false)
+
+    // estado del componente
+    const [tasks, setTasks] = useState([defaultTask])
+    const [loading, setLoading] = useState(false)
+
+    // control de ciclo de vida
+    useEffect(() => {
+        console.log('TASKLIST-COMPONENT-CLASS: has been created')
+        setLoading(false)
+        return () => {
+            console.log('TaskList Componente is goind to unmount...')
+        }
+    }, [tasks])
+
+    // eslint-disable-next-line no-unused-vars
+    const fetchTask = () => {
+        setLoading(!loading)
+    }
+
+    
+    // eslint-disable-next-line no-unused-vars
+    const updateTasks = (newTasks) => {
+        setTasks(tasks.concat(newTasks))
+    }
+
+    return (
+        <div>
+            <h1>Tus Tareas: (FUNCTION)</h1>
+            <div>
+
+                <h2> 1-  Task Class </h2>
+                <ul>
+                    {tasks.map(t => <TaskComponentClass task={t}> </TaskComponentClass>)}
+                </ul>
+
+                <h2> 2 - Task Function </h2>
+                <ul>
+                    {tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)}
+                </ul>
+
+            </div>
+        </div>
+    )
+}
