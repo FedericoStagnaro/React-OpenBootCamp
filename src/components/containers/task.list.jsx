@@ -4,11 +4,13 @@ import Task from "../../models/task.class";
 import { TaskComponentClass, TaskComponentFunction } from "../pure/task";
 
 export class TaskListClass extends React.Component {
-    defaultTask = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, false)
+    defaultTask1 = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, true)
+    defaultTask2 = new Task('Learn React2', 'Learn about react components and hooks2', LEVELS.NORMAL, false)
+    defaultTask3 = new Task('Learn React3', 'Learn about react components and hooks3', LEVELS.BLOCKING, false)
 
     constructor(props) {
         super(props)
-        this.tasks = [this.defaultTask]
+        this.tasks = [this.defaultTask1, this.defaultTask2, this.defaultTask3]
     }
 
     componentDidMount() {
@@ -29,7 +31,7 @@ export class TaskListClass extends React.Component {
                 <div className="card">
                     {/** Card Header */}
                     <div className="card-header p-3">
-                        <h5>Your Task</h5>
+                        <h5>Your Task (CLASS)</h5>
                     </div>
                     {/** Card Body */}
                     <div className="card-body" data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
@@ -43,24 +45,12 @@ export class TaskListClass extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                {this.tasks.map((t,index) => <TaskComponentClass key={index} task={t}> </TaskComponentClass>)}
+                                {/* {this.tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)} */} 
                             </tbody>
                         </table>
                     </div>
                     <div></div>
-                </div>
-                <h1>Tus Tareas: (CLASS)</h1>
-                <div>
-
-                    <h2> 1 - Task Class </h2>
-                    <ul>
-                        {this.tasks.map(t => <TaskComponentClass task={t}> </TaskComponentClass>)}
-                    </ul>
-
-                    <h2> 2 - Task Function </h2>
-                    <ul>
-                        {this.tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)}
-                    </ul>
                 </div>
             </div>
         )

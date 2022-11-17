@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 // añadimos bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
 // estilos propios deben ir debajo de bootstrap
-import './index.css';
+// import './index.css';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';

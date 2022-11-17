@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 // import Greeting from './components/pure/greeting'
 // import GreetingF from './components/pure/greetingFunction'
 
@@ -22,7 +22,9 @@ function App() {
         
         {/** Componente greeting */}
         {/**<Greeting name='Federico'></Greeting> <GreetingF name='Federico'></GreetingF>*/}
-        {/**<TaskList></TaskList>*/}
+        {/* <GreetingStyled name={'Federico'}></GreetingStyled> */}
+
+
         {/* <Ejemplo1></Ejemplo1> */}
         {/* <Ejemplo2></Ejemplo2> */}
         {/* <Ejemplo3></Ejemplo3> */}
@@ -32,10 +34,11 @@ function App() {
           <li>Hijo 3</li>
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
-        <TaskListClass></TaskListClass>
-        <TaskListFunction></TaskListFunction>
 
-        <GreetingStyled name={'Federico'}></GreetingStyled>
+        <TaskListClass></TaskListClass>
+        {/* <TaskListFunction></TaskListFunction> */}
+
+        
 
       {/* </header>  */}
     </div>
