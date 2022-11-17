@@ -17,8 +17,8 @@ import { GreetingStyled } from './components/pure/greeting.function.styled';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      {/* <header className="App-header"> */}
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         
         {/** Componente greeting */}
         {/**<Greeting name='Federico'></Greeting> <GreetingF name='Federico'></GreetingF>*/}
@@ -32,12 +32,12 @@ function App() {
           <li>Hijo 3</li>
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
-        {/* <TaskListClass></TaskListClass> */}
-        {/* <TaskListFunction></TaskListFunction> */}
+        <TaskListClass></TaskListClass>
+        <TaskListFunction></TaskListFunction>
 
         <GreetingStyled name={'Federico'}></GreetingStyled>
 
-      </header> 
+      {/* </header>  */}
     </div>
   );
 }

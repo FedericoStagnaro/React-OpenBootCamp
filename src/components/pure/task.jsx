@@ -20,12 +20,22 @@ export class TaskComponentClass extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2 className='task-name'>{this.task.name}</h2>
-                <p>{this.task.description}</p>
-                <p>{this.task.level}</p>
-                <p>This task is {this.task.completed ? 'Completed' : 'pending'}</p>
-            </div>
+            <tr className='fw-normal'>
+                <th>
+                    <span className='align-middle'>{this.task.name}</span>
+                </th>
+                <td className='align-middle'>
+                    {/** Sustituior por un badge */}
+                    <span >{this.task.level}</span>
+                </td>
+                <td className='align-middle'>
+                    <span>{this.task.description}</span>
+                </td>
+                <td className='align-middle'>
+                    {/** Sustituir por Iconos */}
+                    <span>This task is {this.task.completed ? 'Completed' : 'Pending' }</span>
+                </td>
+            </tr>
         )
     }
 }

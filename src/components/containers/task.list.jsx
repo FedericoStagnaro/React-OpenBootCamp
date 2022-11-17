@@ -25,7 +25,30 @@ export class TaskListClass extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="col-12">
+                <div className="card">
+                    {/** Card Header */}
+                    <div className="card-header p-3">
+                        <h5>Your Task</h5>
+                    </div>
+                    {/** Card Body */}
+                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Priority</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div></div>
+                </div>
                 <h1>Tus Tareas: (CLASS)</h1>
                 <div>
 
@@ -38,7 +61,6 @@ export class TaskListClass extends React.Component {
                     <ul>
                         {this.tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)}
                     </ul>
-
                 </div>
             </div>
         )
