@@ -6,6 +6,7 @@
 // import GreetingF from './components/pure/greetingFunction'
 
 
+import { Father } from './components/containers/father';
 import {TaskListClass, TaskListFunction} from './components/containers/task.list';
 import { GreetingStyled } from './components/pure/greeting.function.styled';
 // import Ejemplo1 from './hooks/ejemplo1.useState';
@@ -35,10 +36,10 @@ function App() {
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
 
-        <TaskListClass></TaskListClass>
+        {/* <TaskListClass></TaskListClass> */}
         {/* <TaskListFunction></TaskListFunction> */}
 
-        
+        <Father></Father>
 
       {/* </header>  */}
     </div>
