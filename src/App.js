@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 // import Greeting from './components/pure/greeting'
 // import GreetingF from './components/pure/greetingFunction'
 
@@ -17,7 +17,7 @@ import { GreetingStyled } from './components/pure/greeting.function.styled';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-sm App">
       {/* <header className="App-header"> */}
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         
@@ -35,11 +35,11 @@ function App() {
           <li>Hijo 3</li>
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
-
-        {/* <TaskListClass></TaskListClass> */}
+        <div></div>
+        <TaskListClass></TaskListClass>
         {/* <TaskListFunction></TaskListFunction> */}
 
-        <Father></Father>
+        {/* <Father></Father> */}
 
       {/* </header>  */}
     </div>

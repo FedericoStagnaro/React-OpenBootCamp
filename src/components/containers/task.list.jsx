@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
 import LEVELS from "../../models/levels.enum";
 import Task from "../../models/task.class";
+import { TaskForm } from "./taskForm";
 import { TaskComponentClass, TaskComponentFunction } from "../pure/task";
 
+const defaultTask1 = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, true)
+const defaultTask2 = new Task('Learn React2', 'Learn about react components and hooks2', LEVELS.NORMAL, false)
+const defaultTask3 = new Task('Learn React3', 'Learn about react components and hooks3', LEVELS.BLOCKING, false)
+const array = [defaultTask1, defaultTask2, defaultTask3]
 export class TaskListClass extends React.Component {
-    defaultTask1 = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, true)
-    defaultTask2 = new Task('Learn React2', 'Learn about react components and hooks2', LEVELS.NORMAL, false)
-    defaultTask3 = new Task('Learn React3', 'Learn about react components and hooks3', LEVELS.BLOCKING, false)
 
     constructor(props) {
         super(props)
-        this.tasks = [this.defaultTask1, this.defaultTask2, this.defaultTask3]
+        console.log('PASS CONSTRUCTOR')
+        this.state = {
+            tasks: [...array]
+        }
+        this.completeTask = this.completeTask.bind(this)
+        this.deleteTask = this.deleteTask.bind(this)
+        this.addTask = this.addTask.bind(this)
     }
 
     componentDidMount() {
         console.log('TASKLIST-COMPONENT-CLASS: has been created')
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
         console.log('TASKLIST-COMPONENT-CLASS: has been updated')
     }
 
@@ -25,16 +33,41 @@ export class TaskListClass extends React.Component {
         console.log('TASKLIST-COMPONENT-CLASS: is going to unmount...')
     }
 
+    completeTask(task) {
+        console.log('Complete this task', task)
+        const index = this.state.tasks.indexOf(task)
+        const tempTask = [...this.state.tasks]
+        tempTask[index].completed = !tempTask[index].completed
+        this.setState({ tasks: tempTask })
+    }
+
+    deleteTask(task) {
+        console.log('Delete this task: ', task)
+        const index = this.state.tasks.indexOf(task)
+        const tempTask = [...this.state.tasks]
+        tempTask.splice(index, 1)
+        this.setState({ tasks: tempTask })
+    }
+
+    addTask(task) {
+        console.log('Add task: ', task)
+        const tempTasks = [...this.state.tasks].concat(task)
+        this.setState({ tasks: tempTasks })
+    }
+
+    printTask() {
+        return this.state.tasks.map((t, index) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)
+    }
+
     render() {
         return (
-            <div className="col-12">
                 <div className="card">
                     {/** Card Header */}
-                    <div className="card-header p-3">
+                    <div className="card-header ">
                         <h5>Your Task (CLASS)</h5>
                     </div>
                     {/** Card Body */}
-                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
+                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative' }}>
                         <table>
                             <thead>
                                 <tr>
@@ -45,14 +78,13 @@ export class TaskListClass extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.tasks.map((t,index) => <TaskComponentClass key={index} task={t}> </TaskComponentClass>)}
-                                {/* {this.tasks.map(t => <TaskComponentFunction task={t}> </TaskComponentFunction>)} */} 
+                                {this.printTask()}
+                                {/* {this.state.tasks.map((t) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)} */}
                             </tbody>
                         </table>
                     </div>
-                    <div></div>
+                    <TaskForm addTask={this.addTask}></TaskForm>
                 </div>
-            </div>
         )
     }
 }
@@ -78,7 +110,7 @@ export const TaskListFunction = (props) => {
         setLoading(!loading)
     }
 
-    
+
     // eslint-disable-next-line no-unused-vars
     const updateTasks = (newTasks) => {
         setTasks(tasks.concat(newTasks))
