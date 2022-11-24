@@ -4,7 +4,7 @@ import ContactList from './components/containers/contact.list';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-xl text-center my-auto" style={{background: 'gray', height: '100vh'}}>
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         
