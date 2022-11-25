@@ -9,6 +9,7 @@ import './App.css';
 import { Father } from './components/containers/father';
 import {TaskListClass, TaskListFunction} from './components/containers/task.list';
 import { GreetingStyled } from './components/pure/greeting.function.styled';
+import { OptionalRender } from './components/pure/optionalRender';
 // import Ejemplo1 from './hooks/ejemplo1.useState';
 // import Ejemplo2 from './hooks/ejemplo2.useEffect';
 // import Ejemplo3 from './hooks/ejemplo3.useContext';
@@ -35,11 +36,10 @@ function App() {
           <li>Hijo 3</li>
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
-        <div></div>
-        <TaskListClass></TaskListClass>
+        {/* <TaskListClass></TaskListClass> */}
         {/* <TaskListFunction></TaskListFunction> */}
-
         {/* <Father></Father> */}
+        <OptionalRender></OptionalRender>
 
       {/* </header>  */}
     </div>
