@@ -49,9 +49,9 @@ export class TaskForm extends Component {
 
                     <div className="form-floating mb-3">
                         <select ref={this.levelRef} className="form-select" name="inputLevel" id="inputLevel" defaultValue={LEVELS.NORMAL}>
-                            <option value={LEVELS.NORMAL}>Normal</option>
-                            <option value={LEVELS.URGENT}>Urgent</option>
-                            <option value={LEVELS.BLOCKING}>Blocking</option>
+                            <option style={{backgroundColor: 'blue'}} value={LEVELS.NORMAL}>Normal</option>
+                            <option style={{backgroundColor: 'yellow'}} value={LEVELS.URGENT}>Urgent</option>
+                            <option style={{backgroundColor: 'red'}} value={LEVELS.BLOCKING}>Blocking</option>
                         </select>
                         <label htmlFor="inputLevel">Select urgency level </label>
                     </div>

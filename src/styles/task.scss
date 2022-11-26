@@ -2,3 +2,12 @@
     cursor: pointer;
 }
 
+.task-completed {
+    color: 'gray';
+    text-decoration: line-through;
+}
+
+.task-pending {
+    color: 'red';
+    font-weight: bold;
+}

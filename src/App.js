@@ -36,10 +36,10 @@ function App() {
           <li>Hijo 3</li>
         </Ejemplo4> */}
         {/* <LifeCycleExample></LifeCycleExample> */}
-        {/* <TaskListClass></TaskListClass> */}
+        <TaskListClass></TaskListClass>
         {/* <TaskListFunction></TaskListFunction> */}
         {/* <Father></Father> */}
-        <OptionalRender></OptionalRender>
+        {/* <OptionalRender></OptionalRender> */}
 
       {/* </header>  */}
     </div>

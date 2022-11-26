@@ -53,7 +53,7 @@ export class TaskComponentClass extends React.Component {
 
     render() {
         return (
-            <tr className='fw-normal'>
+            <tr className={`fw-normal ${this.state.task.completed ? 'task-completed' : 'task-pending'}`} >
                 <th>
                     <span className='text-center'>{this.state.task.name}</span>
                 </th>

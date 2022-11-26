@@ -14,11 +14,20 @@ export class TaskListClass extends React.Component {
         super(props)
         console.log('PASS CONSTRUCTOR')
         this.state = {
-            tasks: [...array]
+            tasks: this.getTasks(),
+            loading: true
         }
         this.completeTask = this.completeTask.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
         this.addTask = this.addTask.bind(this)
+        this.taskTable = this.taskTable.bind(this)
+        this.getTasks = this.getTasks.bind(this)
+    }
+    getTasks () {
+        setTimeout(()=>{
+            console.log(this)
+            this.setState({tasks:[...array], loading:false })
+        },1500)
     }
 
     componentDidMount() {
@@ -59,32 +68,51 @@ export class TaskListClass extends React.Component {
         return this.state.tasks.map((t, index) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)
     }
 
+
+    taskTable() {
+        if (this.state.tasks.length > 0) {
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.printTask()}
+                    </tbody>
+                </table>
+        )} else {
+            return (
+                <div>
+                    <p>There are no task </p>
+                </div>
+            )
+        }
+        
+    }
+
     render() {
         return (
-                <div className="card">
-                    {/** Card Header */}
-                    <div className="card-header ">
-                        <h5>Your Task (CLASS)</h5>
-                    </div>
-                    {/** Card Body */}
-                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative' }}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Priority</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.printTask()}
-                                {/* {this.state.tasks.map((t) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)} */}
-                            </tbody>
-                        </table>
-                    </div>
-                    <TaskForm addTask={this.addTask}></TaskForm>
+            <div className="card">
+                {/** Card Header */}
+                <div className="card-header ">
+                    <h5>Your Task (CLASS)</h5>
                 </div>
+                {/** Card Body */}
+                <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative' }}>
+                    {/* TODO: add loading spinner */}
+                    { this.state.loading 
+                        ? <p>Loading task...</p>
+                        : this.taskTable()
+                    }
+                    
+                </div>
+                <TaskForm addTask={this.addTask}></TaskForm>
+            </div>
         )
     }
 }
