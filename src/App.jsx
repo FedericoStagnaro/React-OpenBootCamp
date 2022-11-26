@@ -1,16 +1,12 @@
 import logo from './logo.svg';
 // import './App.css';
-import ContactList from './components/containers/contact.list';
+// import ContactList from './components/containers/contact.list';
+import { Block } from './components/Block';
 
 function App() {
   return (
-    <div className="container text-center my-auto" style={{background: 'gray', height: '100vh'}}>
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        
-        <ContactList></ContactList>
-
-      </header> 
+    <div className="d-flex justify-content-center align-content-center " >
+        <Block></Block>
     </div>
   );
 }
