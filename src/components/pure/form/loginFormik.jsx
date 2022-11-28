@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
 import * as Yup from 'yup';
 
@@ -13,10 +13,10 @@ export class LoginFormik extends React.Component {
         this.showError = this.showError.bind(this)
     }
 
-    showError(error) {
+    showError(name) {
         return (
             <div class="alert alert-warning" role="alert">
-                <p>{error}</p>
+                <ErrorMessage name={name}></ErrorMessage>
             </div>
         )
     }
@@ -42,11 +42,11 @@ export class LoginFormik extends React.Component {
                             <Form>
                                 <label htmlFor="email">Email</label>
                                 <Field id='email' name='email' type='email' placeholder='example@example.com'></Field>
-                                {errors.email && touched.email && this.showError(errors.email)}
+                                {errors.email && touched.email && this.showError('email')}
 
                                 <label htmlFor="password">Password</label>
                                 <Field id='password' name='password' type='password' placeholder='password'></Field>
-                                {errors.password && touched.password && this.showError(errors.password)}
+                                {errors.password && touched.password && this.showError('password')}
 
                                 <button type="submit">Login</button>
                                 {isSubmitting ? (<p>login your credentials</p>) : null}
