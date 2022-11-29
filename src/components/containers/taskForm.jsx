@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import LEVELS from "../../models/levels.enum";
 import Task from "../../models/task.class";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 
 export class TaskForm extends Component {
     constructor(props) {
@@ -12,18 +14,23 @@ export class TaskForm extends Component {
         this.descriptionRef = React.createRef()
         this.levelRef = React.createRef()
         this.submitTask = this.submitTask.bind(this)
+        this.showError = this.showError.bind(this)
     }
 
+    showError(name) {
+        return (
+            <div className="alert alert-warning" role="alert">
+                <ErrorMessage name={name}></ErrorMessage>
+            </div>
+        )
+    }
 
-    submitTask(e) {
-        e.preventDefault()
-        console.log(this.nameRef.current.value)
-        console.log(this.descriptionRef.current.value)
-        console.log(this.levelRef.current.value)
+    submitTask(values) {
+        console.log(values)
         const newTask = new Task(
-            this.nameRef.current.value,
-            this.descriptionRef.current.value,
-            this.levelRef.current.value,
+            values.name,
+            values.description,
+            values.level,
             false
         )
 
@@ -32,41 +39,65 @@ export class TaskForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.submitTask} className='container card m-1'>
-                <legend>Add a task</legend>
-                <div className=" " >
+            <div>
+                <h4>Add note</h4>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={taskSchema}
+                    onSubmit={(values)=> this.submitTask(values)}>
+                    {({ touched, errors, values, isSubmitting })=> {
+                        return(
+                            <Form>
+                                
+                                <div className="form-floating my-3">
+                                    <Field className="form-control" id='name' name='name' type='text' placeholder='Enter the task name'></Field>
+                                    <label htmlFor="name">Name</label>
+                                    {errors.name && touched.name && this.showError('name')}
+                                </div>
+                                
+                                <div className="form-floating my-3">
+                                    <Field className="form-control" id='description' name='description' type='text' placeholder='Enter the task description'></Field>
+                                    <label htmlFor="description">Description</label>
+                                    {errors.description && touched.description && this.showError('description')}
+                                </div>
 
-                    <div className="form-floating my-3">
-                        <input className="form-control" ref={this.nameRef} id='inputName'  type='text' placeholder="Enter the task name" required autoFocus ></input>
-                        <label className="" htmlFor="inputName" >Name:</label>
-                    </div>
+                                <div className="form-floating mb-3">
+                                    <Field as='select' className="form-select" name="level" id="level" >
+                                        <option style={{backgroundColor: 'gray'}} value=''>Select One urgency level</option>
+                                        <option style={{backgroundColor: 'blue'}} value={LEVELS.NORMAL}>Normal</option>
+                                        <option style={{backgroundColor: 'yellow'}} value={LEVELS.URGENT}>Urgent</option>
+                                        <option style={{backgroundColor: 'red'}} value={LEVELS.BLOCKING}>Blocking</option>
+                                    </Field>
+                                    <label htmlFor="level">Select urgency level </label>
+                                    {errors.level && touched.level && this.showError('level')}
+                                </div>
+                                <div className="d-flex justify-content-evenly mb-3">
+                                    <button type="submit"  style={{  width: '100px'}} id="" className=" btn btn-primary">Add</button> 
+                                </div>
+
+                            </Form>
+                        )
+                    }}
 
 
-                    <div className="form-floating mb-3" >
-                        <textarea className="form-control" style={{height:"100px"}} ref={this.descriptionRef} id='inputDescription' placeholder="Enter the task description"  type='text'  required  ></textarea>
-                        <label className="">Description: </label>
-                    </div>
-
-                    <div className="form-floating mb-3">
-                        <select ref={this.levelRef} className="form-select" name="inputLevel" id="inputLevel" defaultValue={LEVELS.NORMAL}>
-                            <option style={{backgroundColor: 'blue'}} value={LEVELS.NORMAL}>Normal</option>
-                            <option style={{backgroundColor: 'yellow'}} value={LEVELS.URGENT}>Urgent</option>
-                            <option style={{backgroundColor: 'red'}} value={LEVELS.BLOCKING}>Blocking</option>
-                        </select>
-                        <label htmlFor="inputLevel">Select urgency level </label>
-                    </div>
-
-                </div>
-                <div className="d-flex justify-content-evenly mb-3">
-                    <button type="submit"  style={{  width: '100px'}} id="" className=" btn btn-primary">Add</button> 
-                    <button type="submit" name="" id="" className=" btn btn-secondary " style={{  width: '100px'}}>Cancel</button> 
-                </div>
-                
-            </form>
+                </Formik>
+            </div>
+            
             
         )
     }
 }
+const initialValues = {
+    name: '',
+    description: '',
+    level: ''
+}
+
+const taskSchema = Yup.object().shape({
+    name: Yup.string().required('Name must be provided'),
+    description: Yup.string().required('Description must be provided'),
+    level: Yup.string().oneOf([LEVELS.BLOCKING, LEVELS.NORMAL, LEVELS.URGENT]).required('Level must be selected')
+})
 
 TaskForm.propType = {
     addTask: PropTypes.func.isRequired,
