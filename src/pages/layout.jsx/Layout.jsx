@@ -8,7 +8,8 @@ export default class Layout extends Component {
         <nav>
             <Link to='/'>Home</Link> | {" "}
             <Link to='/about'>About</Link> | {" "}
-            <Link to='/users'>Users</Link>
+            <Link to='/users'>Users</Link> | {" "}
+            <Link to='/tasks'>Tasks</Link>
         </nav>
         <section>
             <Outlet></Outlet>

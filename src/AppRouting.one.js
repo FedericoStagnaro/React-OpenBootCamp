@@ -6,6 +6,9 @@ import NotFoundPage from './pages/400/NotFoundPage'
 import About from './pages/about/About';
 import Layout from './pages/layout.jsx/Layout';
 import Profile from './pages/profile/Profile';
+import Task from './pages/tasks/Task';
+import TaskDetail from './pages/tasks/TaskDetailPage';
+
 
 
 
@@ -28,6 +31,14 @@ function AppRoutingOne() {
                     path: '/profile',
                     element: <Profile></Profile>
                 },
+                {
+                    path: '/tasks',
+                    element: <Task></Task>,
+                },
+                {
+                    path: '/tasks/:id',
+                    element: <TaskDetail></TaskDetail>
+                }
 
             ]
         },
