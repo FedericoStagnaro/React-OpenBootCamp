@@ -1,13 +1,11 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function About() {
     const location = useLocation()
+    const navigate = useNavigate()
+    
     console.log('Location:', location)
-
-    const navigate = (path) => {
-        window.history.pushState({},undefined,path)
-    }
 
     const goBack = () => {
         window.history.back()

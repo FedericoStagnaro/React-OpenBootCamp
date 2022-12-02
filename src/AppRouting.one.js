@@ -5,6 +5,8 @@ import HomePage from './pages/home/HomePage';
 import NotFoundPage from './pages/400/NotFoundPage'
 import About from './pages/about/About';
 import Layout from './pages/layout.jsx/Layout';
+import Profile from './pages/profile/Profile';
+
 
 
 
@@ -22,6 +24,11 @@ function AppRoutingOne() {
                     path: '/about',
                     element: <About></About>
                 },
+                {
+                    path: '/profile',
+                    element: <Profile></Profile>
+                },
+
             ]
         },
         
