@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Link , redirect } from 'react-router-dom';
 import HomePage from './pages/home/HomePage';
 import NotFoundPage from './pages/400/NotFoundPage'
 import About from './pages/about/About';
@@ -14,6 +14,8 @@ import TaskDetail from './pages/tasks/TaskDetailPage';
 
 
 function AppRoutingOne() {
+    const logged = false;
+
     const routes = createBrowserRouter([
         {
             path: '/',
@@ -29,6 +31,9 @@ function AppRoutingOne() {
                 },
                 {
                     path: '/profile',
+                    loader: ()=> {
+                        if(!logged) return redirect('/')
+                    },
                     element: <Profile></Profile>
                 },
                 {
