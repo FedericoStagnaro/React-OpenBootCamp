@@ -11,6 +11,7 @@ import TaskDetailPage from './pages/tasks/TaskDetailPage';
 import Login from './pages/auth/Login';
 
 import { useEffect } from 'react';
+import StatePage from './pages/home/StatePage';
 
 
 
@@ -32,6 +33,10 @@ function AppRoutingOne() {
                 {
                     path: '/',
                     element: <HomePage></HomePage>
+                },
+                {
+                    path: '/statepage',
+                    element: <StatePage></StatePage>
                 },
                 {
                     path: '/about',

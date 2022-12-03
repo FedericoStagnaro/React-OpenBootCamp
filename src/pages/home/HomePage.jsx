@@ -5,15 +5,12 @@ export default function HomePage() {
 
   const navigate = useNavigate()
 
-  // const navigate = (path) => {
-  //   window.history.pushState({}, undefined, path)
-  // }
-
   return (
     <div>
       <h1>homePage</h1>
       <div>
         <button onClick={() => navigate('/profile')}>Go to Profile</button>
+        <button onClick={() => navigate('/statepage', { state: {online: true}, search: '?online=true'})}>Go to state</button>
       </div>
     </div>
   )
