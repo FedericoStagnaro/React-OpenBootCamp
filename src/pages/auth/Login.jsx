@@ -1,4 +1,5 @@
 import React from 'react'
+import {LoginFormik} from '../../components/pure/form/loginFormik'
 
 export default function Login() {
 
@@ -6,7 +7,7 @@ export default function Login() {
         <div>
             <h1>Login page</h1>
             <div>
-                
+                <LoginFormik></LoginFormik>
             </div>
         </div>
     )

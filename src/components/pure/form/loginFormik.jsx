@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 
 export class LoginFormik extends React.Component {
@@ -28,9 +29,10 @@ export class LoginFormik extends React.Component {
                 <Formik
                     initialValues={this.initialCredentials}
                     validationSchema={loginSchema} // Yup validation schema
-                    onSubmit={(values) => { 
+                    onSubmit={async (values) => { 
                         console.log(values) 
-                        localStorage.setItem('credentials', values )
+                        await localStorage.setItem('credentials', values )
+                        window.history.pushState({},undefined,'/profile')
                     }}
                 >
 
@@ -56,6 +58,7 @@ export class LoginFormik extends React.Component {
 
 
                 </Formik>
+
             </div>
         )
     }
