@@ -8,12 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AppRoutingOne from './AppRouting.one';
+import RoutingFinal from './RoutingFinal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppRoutingOne />
+    <RoutingFinal />
   </React.StrictMode>
 );
 
