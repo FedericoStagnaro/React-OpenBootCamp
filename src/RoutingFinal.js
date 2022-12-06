@@ -6,7 +6,7 @@ import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 
 function RoutingFinal() {
-    let loggedIn = false;
+    let loggedIn = true;
 
     const routes = createBrowserRouter([
         {
