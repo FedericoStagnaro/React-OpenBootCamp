@@ -22,11 +22,12 @@ export default function MenuList({ list }) {
     return (
         <List>
             {list.map(({ text, path, icon }, index) => {
-                <ListItem key={index} button onClick={()=> navigate(path)}>
-                    <ListItemIcon>{getIcon(icon)}</ListItemIcon>
-                    <ListItemText primary={text}></ListItemText>
-                </ListItem>
-            })}
+                return (
+                    <ListItem key={index} button onClick={()=> navigate(path)}>
+                        <ListItemIcon>{getIcon(icon)}</ListItemIcon>
+                        <ListItemText primary={text}></ListItemText>
+                    </ListItem>
+                )})}
         </List>
     )
 }
