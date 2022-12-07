@@ -48,10 +48,7 @@ const registerSchema = Yup.object().shape({
 export class RegisterFormik extends React.Component {
     constructor(props) {
         super(props)
-    }
-
-    submit() {
-        console.log('Register User')
+        this.submit = this.props.submit
     }
 
     render() {
@@ -62,26 +59,36 @@ export class RegisterFormik extends React.Component {
                     {({ touched, errors, isSubmitting, handleChange, handleBlur }) => {
                         return (
                             <Form>
-                                <label htmlFor="username">Username</label>
-                                <Field id='username' name='username' type='text' placeholder='Your username'></Field>
-                                {errors.username && touched.username && (<ErrorMessage name='username' component='div'></ErrorMessage>)}
+                                <div>
+                                    <label htmlFor="username">Username</label>
+                                    <Field id='username' name='username' type='text' placeholder='Your username'></Field>
+                                    {errors.username && touched.username && (<ErrorMessage name='username' component='div'></ErrorMessage>)}
+                                </div>
+                                
+                                <div>
+                                    <label htmlFor="email">Email</label>
+                                    <Field id='email' name='email' type='email' placeholder='example@example.com'></Field>
+                                    {errors.email && touched.email && (<ErrorMessage name='email' component='div'></ErrorMessage>)}
+                                </div>
 
-                                <label htmlFor="email">Email</label>
-                                <Field id='email' name='email' type='email' placeholder='example@example.com'></Field>
-                                {errors.email && touched.email && (<ErrorMessage name='email' component='div'></ErrorMessage>)}
+                                <div>
+                                    <label htmlFor="password">Password</label>
+                                    <Field id='password' name='password' type='password' placeholder='Your password'></Field>
+                                    {errors.password && touched.password && (<ErrorMessage name='password' component='div'></ErrorMessage>)}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="confirm">Confirm password</label>
+                                    <Field id='confirm' name='confirm' type='password' placeholder='Confirm your password'></Field>
+                                    {errors.confirm && touched.confirm && (<ErrorMessage name='confirm' component='div'></ErrorMessage>)}
+                                </div>
+
+                                <div>
+                                    <button type="submit">Register Account</button>
+                                    {isSubmitting ? (<p>Sending your crendentials...</p>) : null}
+                                </div>
 
 
-                                <label htmlFor="password">Password</label>
-                                <Field id='password' name='password' type='password' placeholder='Your password'></Field>
-                                {errors.password && touched.password && (<ErrorMessage name='password' component='div'></ErrorMessage>)}
-
-
-                                <label htmlFor="confirm">Confirm password</label>
-                                <Field id='confirm' name='confirm' type='password' placeholder='Confirm your password'></Field>
-                                {errors.confirm && touched.confirm && (<ErrorMessage name='confirm' component='div'></ErrorMessage>)}
-
-                                <button type="submit">Register Account</button>
-                                {isSubmitting ? (<p>Sending your crendentials...</p>) : null}
 
 
                             </Form>

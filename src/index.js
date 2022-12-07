@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {RouterProvider} from 'react-router-dom'
-import router from './router';
+import Router from './Router';
 // añadimos bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
 // estilos propios deben ir debajo de bootstrap
@@ -12,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <RouterProvider router={router}></RouterProvider>
+    <Router></Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
