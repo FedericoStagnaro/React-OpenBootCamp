@@ -19,3 +19,13 @@ export const getAllPagedUsers = async (page) => {
         return error
     }
 }
+
+export const getOneUser = async (id) => {
+    try {
+        let response = await fetch(`https://reqres.in/api/users/${id}`)
+        console.log(response)
+        return response.json()
+    } catch (error) {
+        return error
+    }
+}

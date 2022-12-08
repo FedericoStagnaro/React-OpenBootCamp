@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { getAllUsers, getAllPagedUsers } from '../../services/fetchService'
+import { getAllUsers, getAllPagedUsers, getOneUser } from '../../services/fetchService'
 
 export default function FetchService() {
     const [users, setUsers] = useState([])
+    const [selectedUser, setSelectedUser] = useState(false)
     const [page, setPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [totalUsers, setTotalUsers] = useState(0)
@@ -33,10 +34,9 @@ export default function FetchService() {
     }
 
     const obtainPageUsers = (page) => {
-        console.log('ON PAGES...')
         getAllPagedUsers(page)
             .then(response => {
-                console.log('All users:', response.data)
+                console.log('All users Page:', response.data)
                 setUsers(response.data)
                 setPage(response.page)
                 setTotalPages(response.total_pages)
@@ -52,13 +52,42 @@ export default function FetchService() {
             })
     }
 
+    const obtainDetailedUser = (id) => {
+        console.log(id)
+        getOneUser(id)
+            .then(response => {
+                console.log(response.data)
+                setSelectedUser(response.data)
+            })
+            .catch(error => {
+                console.log('Error:', error)
+            })
+            .finally(() => {
+                console.log('Ended ontain one user.')
+            })
+    }
+
     const renderButtonsPage = () => {
         if (totalPages > 1) {
             return Array.from(
-                Array(totalPages), 
-                (data,index) => <button key={index + 1} onClick={() => obtainPageUsers(index + 1)}>{index + 1}</button>, 
+                Array(totalPages),
+                (data, index) => <button key={index + 1} onClick={() => obtainPageUsers(index + 1)}>{index + 1}</button>,
                 null)
         }
+    }
+
+    const renderSelectedUser = () => {
+        return (
+            <div>
+                <h4>Detailed user</h4>
+                <div>
+                    <p>id: {selectedUser.id}</p>
+                    <p>Name: {selectedUser.first_name}</p>
+                    <p>LastName: {selectedUser.last_name}</p>
+                    <p>email: {selectedUser.email}</p>                
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -67,7 +96,7 @@ export default function FetchService() {
             <div>
                 <h3>Users list</h3>
                 <ul>
-                    {users.map((user) => <li key={user.id}>{user.first_name}</li>)}
+                    {users.map((user) => <li key={user.id} onClick={() => obtainDetailedUser(user.id)}>{user.first_name}</li>)}
                 </ul>
             </div>
             <div>
@@ -82,10 +111,9 @@ export default function FetchService() {
 
                     <span className='mx-3'> Total pages : {totalPages}</span>
                 </nav>
-
-
-
-
+            </div>
+            <div>
+                {selectedUser && renderSelectedUser()}
             </div>
         </div>
     )
