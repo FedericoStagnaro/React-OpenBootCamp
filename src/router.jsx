@@ -5,6 +5,7 @@ import TasksPage from './pages/TasksPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LayoutNav from './pages/LayoutNav'
+import JokesNorris from './pages/JokesNorris'
 
 export default function Router() {
 
@@ -44,6 +45,10 @@ export default function Router() {
         {
             path: '*',
             element: <div><p>404 error</p></div>
+        },
+        {
+            path: '/norris',
+            element: <JokesNorris></JokesNorris>
         }
     ])
 
