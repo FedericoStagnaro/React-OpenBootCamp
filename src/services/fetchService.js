@@ -29,3 +29,24 @@ export const getOneUser = async (id) => {
         return error
     }
 }
+
+export const login = async (email, password) => {
+    let body = {
+        email: email,
+        password: password
+    }
+
+    let response = await fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        // cache: 'no-cache',
+        // headers: { 'Content-Type': 'application/json' },
+        body: {
+            "email": "eve.holt@reqres.in",
+            "password": "cityslicka"
+        },
+        mode: 'no-cors',
+        // credentials: "omit"
+    })
+
+    return response.json()
+}

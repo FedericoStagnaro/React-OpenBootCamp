@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllUsers, getAllPagedUsers, getOneUser } from '../../services/fetchService'
+import { getAllUsers, getAllPagedUsers, getOneUser, login } from '../../services/fetchService'
 
 export default function FetchService() {
     const [users, setUsers] = useState([])
@@ -84,10 +84,16 @@ export default function FetchService() {
                     <p>id: {selectedUser.id}</p>
                     <p>Name: {selectedUser.first_name}</p>
                     <p>LastName: {selectedUser.last_name}</p>
-                    <p>email: {selectedUser.email}</p>                
+                    <p>email: {selectedUser.email}</p>
                 </div>
             </div>
         )
+    }
+
+    const auth = () => {
+        login('eve.holt@reqres.in', 'cityslicka').then((response)=>{
+            console.log(response)
+        })
     }
 
     return (
@@ -114,6 +120,9 @@ export default function FetchService() {
             </div>
             <div>
                 {selectedUser && renderSelectedUser()}
+            </div>
+            <div>
+                <button onClick={() => auth()}>Login</button>
             </div>
         </div>
     )
