@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { createBrowserRouter, RouterProvider, Link, redirect } from 'react-router-dom';
+import FetchService from './components/pure/FetchService';
 import NotFoundPage from './pages/400/NotFoundPage';
 import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -21,6 +22,10 @@ function RoutingFinal() {
         {
             path: '/login',
             element: <Login></Login>
+        },
+        {
+            path: '/users',
+            element: <FetchService></FetchService>
         },
         {
             path: '*',
