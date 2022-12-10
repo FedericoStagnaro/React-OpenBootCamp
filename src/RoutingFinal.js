@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { createBrowserRouter, RouterProvider, Link, redirect } from 'react-router-dom';
+import AxiosCRUDExample from './components/pure/AxiosCRUDExample';
 import AxiosExample from './components/pure/AxiosExample';
 import FetchService from './components/pure/FetchService';
 import NotFoundPage from './pages/400/NotFoundPage';
@@ -35,6 +36,10 @@ function RoutingFinal() {
         {
             path: '*',
             element: <NotFoundPage></NotFoundPage>
+        },
+        {
+            path: '/crud',
+            element: <AxiosCRUDExample></AxiosCRUDExample>
         },
     ])
 
