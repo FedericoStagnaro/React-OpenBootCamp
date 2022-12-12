@@ -7,6 +7,7 @@ import FetchService from './components/pure/FetchService';
 import NotFoundPage from './pages/400/NotFoundPage';
 import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
+import TodoPage from './pages/todo/TodoPage';
 
 function RoutingFinal() {
     let loggedIn = true;
@@ -14,32 +15,7 @@ function RoutingFinal() {
     const routes = createBrowserRouter([
         {
             path: '/',
-            loader: () => {
-                if(!loggedIn) {
-                    return redirect('/login')
-                }
-            },
-            element: <Dashboard/>
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/users',
-            element: <FetchService></FetchService>
-        },
-        {
-            path: '/axios',
-            element: <AxiosExample></AxiosExample>
-        },
-        {
-            path: '*',
-            element: <NotFoundPage></NotFoundPage>
-        },
-        {
-            path: '/crud',
-            element: <AxiosCRUDExample></AxiosCRUDExample>
+            element: <TodoPage></TodoPage>
         },
     ])
 
