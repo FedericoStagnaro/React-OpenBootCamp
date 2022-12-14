@@ -8,6 +8,7 @@ import NotFoundPage from './pages/400/NotFoundPage';
 import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import TodoPage from './pages/todo/TodoPage';
+import ReduxSagaPage from './pages/ReduxSagaPage';
 
 function RoutingFinal() {
     let loggedIn = true;
@@ -16,6 +17,10 @@ function RoutingFinal() {
         {
             path: '/',
             element: <TodoPage></TodoPage>
+        },
+        {
+            path: '/saga',
+            element: <ReduxSagaPage></ReduxSagaPage>
         },
     ])
 

@@ -1,8 +1,11 @@
-import { combineReducers } from "redux";
+import { applyMiddleware, combineReducers } from "redux";
 import { filterReducer } from '../reducers/filterReducers'
 import { todosReducers } from "../reducers/todoReducers";
+import { userReducer } from "../reducers/userReducers";
+import { watcherSaga } from "../sagas/sagas";
 
-import { configureStore} from "@reduxjs/toolkit"
+import createSagaMiddleware from "@redux-saga/core";
+import { configureStore } from "@reduxjs/toolkit"
 
 
 /**
@@ -12,13 +15,18 @@ export const rootReducer = combineReducers(
     {
         // state name: Reducer that will control it
         todoState: todosReducers,
-        filterState: filterReducer
+        filterState: filterReducer,
+        userState: userReducer
         // ... add more state and reducers to include them in the store
     }
 )
 
+const sagaMiddleware = createSagaMiddleware()
+
 const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: [sagaMiddleware]
 })
+sagaMiddleware.run(watcherSaga)
 
 export default store
