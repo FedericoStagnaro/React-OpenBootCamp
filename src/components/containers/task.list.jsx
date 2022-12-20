@@ -10,6 +10,7 @@ const defaultTask3 = new Task('Learn React3', 'Learn about react components and 
 const array = [defaultTask1, defaultTask2, defaultTask3]
 export class TaskListClass extends React.Component {
 
+
     constructor(props) {
         super(props)
         console.log('PASS CONSTRUCTOR')
@@ -104,7 +105,7 @@ export class TaskListClass extends React.Component {
                 </div>
                 {/** Card Body */}
                 <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative' }}>
-                    {/* TODO: add loading spinner */}
+                    
                     { this.state.loading 
                         ? <p>Loading task...</p>
                         : this.taskTable()
