@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Link, redirect } from 'react-route
 import AxiosCRUDExample from './components/pure/AxiosCRUDExample';
 import AxiosExample from './components/pure/AxiosExample';
 import FetchService from './components/pure/FetchService';
+import LoginReducer from './components/pure/form/LoginReducer';
 import LoginUseState from './components/pure/form/LoginUseState';
 import NotFoundPage from './pages/400/NotFoundPage';
 import Login from './pages/auth/Login';
@@ -45,6 +46,10 @@ function RoutingFinal() {
         {
             path: '/loginState',
             element: <LoginUseState></LoginUseState>
+        },
+        {
+            path: '/loginReducer',
+            element: <LoginReducer></LoginReducer>
         },
     ])
 
