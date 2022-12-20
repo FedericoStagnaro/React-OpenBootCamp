@@ -6,14 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 // estilos propios deben ir debajo de bootstrap
 // import './index.css';
 
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import RoutingFinal from './RoutingFinal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RoutingFinal />
+    <App></App>
   </React.StrictMode>
 );
 
