@@ -3,32 +3,16 @@ import LEVELS from "../../models/levels.enum";
 import Task from "../../models/task.class";
 import { TaskForm } from "./taskForm";
 import { TaskComponentClass, TaskComponentFunction } from "../pure/task";
+import { ADD_TASK, DELETE_TASK } from "./WrapperTaskList";
+import { TaskContext } from "./TaskContext";
 
-const defaultTask1 = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, true)
-const defaultTask2 = new Task('Learn React2', 'Learn about react components and hooks2', LEVELS.NORMAL, false)
-const defaultTask3 = new Task('Learn React3', 'Learn about react components and hooks3', LEVELS.BLOCKING, false)
-const array = [defaultTask1, defaultTask2, defaultTask3]
 export class TaskListClass extends React.Component {
-
-
     constructor(props) {
         super(props)
-        console.log('PASS CONSTRUCTOR')
-        this.state = {
-            tasks: this.getTasks(),
-            loading: true
-        }
         this.completeTask = this.completeTask.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
         this.addTask = this.addTask.bind(this)
         this.taskTable = this.taskTable.bind(this)
-        this.getTasks = this.getTasks.bind(this)
-    }
-    getTasks () {
-        setTimeout(()=>{
-            console.log(this)
-            this.setState({tasks:[...array], loading:false })
-        },1500)
     }
 
     componentDidMount() {
@@ -53,25 +37,26 @@ export class TaskListClass extends React.Component {
 
     deleteTask(task) {
         console.log('Delete this task: ', task)
-        const index = this.state.tasks.indexOf(task)
-        const tempTask = [...this.state.tasks]
-        tempTask.splice(index, 1)
-        this.setState({ tasks: tempTask })
+        this.context.dispatch({
+            type: DELETE_TASK,
+            taskToDelete: task
+        })
     }
 
     addTask(task) {
-        console.log('Add task: ', task)
-        const tempTasks = [...this.state.tasks].concat(task)
-        this.setState({ tasks: tempTasks })
+        this.context.dispatch({type: ADD_TASK, newTask : task})
+        // console.log('Add task: ', task)
+        // const tempTasks = [...this.state.tasks].concat(task)
+        // this.setState({ tasks: tempTasks })
     }
 
     printTask() {
-        return this.state.tasks.map((t, index) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)
+        return this.context.state.tasks.map((t, index) => <TaskComponentClass key={Math.random() * 100} task={t} setComplete={this.completeTask} setDelete={this.deleteTask} />)
     }
 
 
     taskTable() {
-        if (this.state.tasks.length > 0) {
+        if (this.context.state.tasks.length > 0) {
             return (
                 <table>
                     <thead>
@@ -86,14 +71,15 @@ export class TaskListClass extends React.Component {
                         {this.printTask()}
                     </tbody>
                 </table>
-        )} else {
+            )
+        } else {
             return (
                 <div>
                     <p>There are no task </p>
                 </div>
             )
         }
-        
+
     }
 
     render() {
@@ -105,18 +91,20 @@ export class TaskListClass extends React.Component {
                 </div>
                 {/** Card Body */}
                 <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative' }}>
-                    
-                    { this.state.loading 
+
+                    {this.context.state.loading
                         ? <p>Loading task...</p>
                         : this.taskTable()
                     }
-                    
+
                 </div>
                 <TaskForm addTask={this.addTask}></TaskForm>
             </div>
         )
     }
 }
+
+TaskListClass.contextType = TaskContext
 
 export const TaskListFunction = (props) => {
     const defaultTask = new Task('Learn React', 'Learn about react components and hooks', LEVELS.URGENT, false)
@@ -164,3 +152,4 @@ export const TaskListFunction = (props) => {
         </div>
     )
 }
+
