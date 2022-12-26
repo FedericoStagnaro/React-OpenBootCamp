@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server --mode development",
     "docs:build": "documentation build src/** -f html -o docs",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development"
+    "build:dev": "webpack --mode development",
+    "deploy:net:prod": "netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
+    "netlify-cli": "^12.5.0",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
     "source-map-loader": "^4.0.1",
